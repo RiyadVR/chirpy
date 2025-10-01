@@ -35,7 +35,7 @@ func handlerValidateChirp(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func cleanChirp(chirp string) string {
+func cleanChirp(chirp string) string { // this function is also used by handlerChirpsCreate function
 	splittedWords := strings.Split(chirp, " ")
 
 	for i, word := range splittedWords {
