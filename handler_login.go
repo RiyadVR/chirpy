@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/riyadvr/chirpy/internal/auth"
+	"github.com/riyadvr/chirpy/internal/database"
 )
 
 func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
@@ -17,7 +18,8 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 
 	type response struct {
 		User
-		Token string `json:"token"`
+		Token        string `json:"token"`
+		RefreshToken string `json:"refresh_token"`
 	}
 
 	decoder := json.NewDecoder(r.Body)
@@ -39,14 +41,31 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	expirationTime := time.Hour
-	if params.ExpiresInSeconds > 0 && params.ExpiresInSeconds < 3600 {
-		expirationTime = time.Duration(params.ExpiresInSeconds) * time.Second
-	}
+	// expirationTime := time.Hour
+	// if params.ExpiresInSeconds > 0 && params.ExpiresInSeconds < 3600 {
+	// 	expirationTime = time.Duration(params.ExpiresInSeconds) * time.Second
+	// }
 
-	token, err := auth.MakeJWT(dbUser.ID, cfg.jwtSecret, expirationTime)
+	accessToken, err := auth.MakeJWT(dbUser.ID, cfg.jwtSecret)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "JWT creation failed", err)
+		return
+	}
+
+	refreshToken, err := auth.MakeRefreshToken()
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Refresh token creation failed", err)
+		return
+	}
+
+	_, err = cfg.db.AddRefreshToken(r.Context(), database.AddRefreshTokenParams{
+		Token:     refreshToken,
+		UserID:    dbUser.ID,
+		ExpiresAt: time.Now().Add(60 * 24 * time.Hour),
+	})
+
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, "Couldn't add refresh token to the database", err)
 		return
 	}
 
@@ -56,7 +75,8 @@ func (cfg *apiConfig) handlerLogin(w http.ResponseWriter, r *http.Request) {
 		apiUser.CreatedAt = dbUser.CreatedAt
 		apiUser.UpdatedAt = dbUser.UpdatedAt
 		apiUser.Email = dbUser.Email
-		apiUser.Token = token
+		apiUser.Token = accessToken
+		apiUser.RefreshToken = refreshToken
 	}
 	respondWithJSON(w, http.StatusOK, apiUser)
 }
