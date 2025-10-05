@@ -79,6 +79,8 @@ func main() {
 
 	mux.HandleFunc("PUT /api/users", apiCfg.handlerUpdateUser)
 
+	mux.HandleFunc("DELETE /api/chirps/{chirpID}", apiCfg.handlerDeleteChirp)
+
 	server := &http.Server{
 		Handler: mux,
 		Addr:    ":" + port,
