@@ -65,33 +65,32 @@ Basically — it’s the Go developer’s dream stack. 😎
 ### 🪄 Installation Steps
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/RiyadVR/chirpy.git
-   cd chirpy
-   ```
+```bash
+git clone https://github.com/RiyadVR/chirpy.git
+cd chirpy
+```
 
 2. **Grab the dependencies**
-    ```bash
-    go mod download
-    ```
+```bash
+go mod download
+```
 
 3. **Install Goose for migrations**
-    ```bash
-    go install github.com/pressly/goose/v3/cmd/goose@latest
-    ```
+```bash
+go install github.com/pressly/goose/v3/cmd/goose@latest
+```
 4. **Set up your .env file**
-    ```bash
-    DB_URL=postgres://username:password@localhost/chirpy?sslmode=disable
-    JWT_SECRET=your-super-secret-jwt-key
-    POLKA_KEY=your-polka-api-key
-    PLATFORM=dev
-    ```
-
+ ```bash
+DB_URL=postgres://username:password@localhost/chirpy?sslmode=disable
+JWT_SECRET=your-super-secret-jwt-key
+POLKA_KEY=your-polka-api-key
+PLATFORM=dev
+```
 
 5. **Spin up your DB and run the app**
-    ```bash
-    go run .
-    ```
+```bash
+go run .
+```
 
 Your Chirpy server will start at http://localhost:8080 🎉
 
@@ -151,19 +150,20 @@ Request monitoring and hit counts
 We use Goose to keep DB changes smooth.
 
 Common commands:
-    ```bash
-    # Run all migrations
-    goose -dir sql/schema postgres $DB_URL up
 
-    # Rollback last migration
-    goose -dir sql/schema postgres $DB_URL down
+```bash
+# Run all migrations
+goose -dir sql/schema postgres $DB_URL up
 
-    # Check status
-    goose -dir sql/schema postgres $DB_URL status
+# Rollback last migration
+goose -dir sql/schema postgres $DB_URL down
 
-    # Create new migration
-    goose -dir sql/schema create migration_name sql
-    ```
+# Check status
+goose -dir sql/schema postgres $DB_URL status
+
+# Create new migration
+goose -dir sql/schema create migration_name sql
+```
 
 🧑‍🔬 Dev Mode
 Set PLATFORM=dev in .env to unlock:
