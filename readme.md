@@ -68,22 +68,28 @@ Basically — it’s the Go developer’s dream stack. 😎
    ```bash
    git clone https://github.com/RiyadVR/chirpy.git
    cd chirpy
+   ```
 
 2. **Grab the dependencies**
     ```go mod download
 
 3. **Install Goose for migrations**
-    ```go install github.com/pressly/goose/v3/cmd/goose@latest
-
+    ```bash
+    go install github.com/pressly/goose/v3/cmd/goose@latest
+    ```
 4. **Set up your .env file**
-    ```DB_URL=postgres://username:password@localhost/chirpy?sslmode=disable
+    ```bash
+    DB_URL=postgres://username:password@localhost/chirpy?sslmode=disable
     JWT_SECRET=your-super-secret-jwt-key
     POLKA_KEY=your-polka-api-key
     PLATFORM=dev
+    ```
 
 
 5. **Spin up your DB and run the app**
-    ```go run .
+    ```bash
+    go run .
+    ```
 
 Your Chirpy server will start at http://localhost:8080 🎉
 
@@ -133,7 +139,8 @@ Request monitoring and hit counts
 🗃️ Database Migrations
 We use Goose to keep DB changes smooth.
 Common commands:
-    ```# Run all migrations
+    ```bash
+    # Run all migrations
     goose -dir sql/schema postgres $DB_URL up
 
     # Rollback last migration
@@ -144,6 +151,7 @@ Common commands:
 
     # Create new migration
     goose -dir sql/schema create migration_name sql
+    ```
 
 🧑‍🔬 Dev Mode
 Set PLATFORM=dev in .env to unlock:
@@ -152,7 +160,9 @@ Set PLATFORM=dev in .env to unlock:
 Extra debug logs
 
 ## ✅ Testing
-    ``` go test ./...
+    ```bash 
+    go test ./...
+    ```
 
 🙏 Thanks & Credits
 Massive shoutout to:
