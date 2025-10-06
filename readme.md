@@ -160,9 +160,9 @@ Set PLATFORM=dev in .env to unlock:
 Extra debug logs
 
 ## ✅ Testing
-    ```bash 
-    go test ./...
-    ```
+```bash
+go test ./...
+```
 
 🙏 Thanks & Credits
 Massive shoutout to:
