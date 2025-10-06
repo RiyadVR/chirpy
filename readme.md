@@ -112,10 +112,13 @@ Basically, everything a proper API should chirp about. 🐣
 We use JWT (JSON Web Tokens) for authentication:
 
 Register or login → get access & refresh tokens
+
 Send requests with your access token:Authorization: Bearer <your-token>
 
 Refresh tokens when they expire
+
 Log out → revoke refresh tokens
+
 Easy peasy, secure and sleek 🔒
 
 🎯 Cool Stuff Inside
@@ -128,18 +131,25 @@ Delete only your own chirps — no drama here
 # 🟥 Chirpy Red
 
 Upgrade to premium via Polka payments
+
 Webhook integration keeps user status in sync
+
 Because every bird deserves to shine ✨
 
 # 🧑‍💻 Admin Zone
 
 App metrics dashboard
+
 DB reset (for dev mode)
+
 Request monitoring and hit counts
 
 🧪 Dev Notes
+
 🗃️ Database Migrations
+
 We use Goose to keep DB changes smooth.
+
 Common commands:
     ```bash
     # Run all migrations
@@ -167,11 +177,15 @@ go test ./...
 ```
 
 🙏 Thanks & Credits
+
 Massive shoutout to:
 
 🏫 Boot.Dev — for the awesome HTTP Servers course
+
 🧑‍💻 Go community — for top-tier tools & libraries
+
 🐘 PostgreSQL team — for a rock-solid database
 
 Built with ❤️ and a lot of Go by following Boot.Dev’s course.
+
 Happy chirping! 🐦💬
