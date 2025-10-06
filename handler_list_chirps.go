@@ -2,13 +2,16 @@ package main
 
 import (
 	"net/http"
+	"sort"
 
 	"github.com/google/uuid"
 )
 
+// this handler needs to refactor the duplicate code later
 func (cfg *apiConfig) handlerListChirps(w http.ResponseWriter, r *http.Request) {
 
 	authorID := r.URL.Query().Get("author_id")
+	sortvalue := r.URL.Query().Get("sort") // sorting by value desc and asc, asc is be default by sql query
 
 	if authorID != "" { // this block means the author_id is present the query parameters
 		authorUUID, err := uuid.Parse(authorID)
@@ -34,6 +37,10 @@ func (cfg *apiConfig) handlerListChirps(w http.ResponseWriter, r *http.Request) 
 			})
 		}
 
+		if sortvalue == "desc" {
+			sort.Slice(chirps, func(i, j int) bool { return chirps[i].CreatedAt.After(chirps[j].CreatedAt) })
+		}
+
 		respondWithJSON(w, http.StatusOK, chirps)
 		return
 
@@ -54,6 +61,10 @@ func (cfg *apiConfig) handlerListChirps(w http.ResponseWriter, r *http.Request) 
 			UserID:    dbChirp.UserID,
 			Body:      dbChirp.Body,
 		})
+	}
+
+	if sortvalue == "desc" {
+		sort.Slice(chirps, func(i, j int) bool { return chirps[i].CreatedAt.After(chirps[j].CreatedAt) })
 	}
 
 	respondWithJSON(w, http.StatusOK, chirps)
