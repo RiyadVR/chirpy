@@ -71,7 +71,9 @@ Basically — it’s the Go developer’s dream stack. 😎
    ```
 
 2. **Grab the dependencies**
-    ```go mod download
+    ```bash
+    go mod download
+    ```
 
 3. **Install Goose for migrations**
     ```bash
