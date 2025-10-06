@@ -64,57 +64,52 @@ Basically — it’s the Go developer’s dream stack. 😎
 
 ### 🪄 Installation Steps
 
-1. **Clone this bird’s nest**
+1. **Clone the repository**
    ```bash
    git clone https://github.com/RiyadVR/chirpy.git
    cd chirpy
 
-Chirpy Setup Guide
-Installation
+2. **Grab the dependencies**
+    ```go mod download
 
-Grab the dependencies
-go mod download
+3. **Install Goose for migrations**
+    ```go install github.com/pressly/goose/v3/cmd/goose@latest
 
-
-Install Goose for migrations
-go install github.com/pressly/goose/v3/cmd/goose@latest
-
-
-Set up your .env file
-DB_URL=postgres://username:password@localhost/chirpy?sslmode=disable
-JWT_SECRET=your-super-secret-jwt-key
-POLKA_KEY=your-polka-api-key
-PLATFORM=dev
+4. **Set up your .env file**
+    ```DB_URL=postgres://username:password@localhost/chirpy?sslmode=disable
+    JWT_SECRET=your-super-secret-jwt-key
+    POLKA_KEY=your-polka-api-key
+    PLATFORM=dev
 
 
-Spin up your DB and run the app
-go run .
+5. **Spin up your DB and run the app**
+    ```go run .
 
 Your Chirpy server will start at http://localhost:8080 🎉
 
 
-📖 API Docs
+## 📖 API Docs
 All the nitty-gritty API details (endpoints, formats, tokens, etc.) can be found in the API Documentation.
 You’ll find everything from:
 
-User registration/login
-Chirp creation and deletion
-Token refresh/revoke
-Webhook endpoints
-Admin controls
+- User registration/login
+- Chirp creation and deletion
+- Token refresh/revoke
+- Webhook endpoints
+- Admin controls
 
 Basically, everything a proper API should chirp about. 🐣
-🔐 How Auth Works
+
+## 🔐 How Auth Works
 We use JWT (JSON Web Tokens) for authentication:
 
 Register or login → get access & refresh tokens
 Send requests with your access token:Authorization: Bearer <your-token>
 
-
 Refresh tokens when they expire
 Log out → revoke refresh tokens
-
 Easy peasy, secure and sleek 🔒
+
 🎯 Cool Stuff Inside
 🐤 Chirps
 
@@ -122,13 +117,13 @@ Max 140 characters (classic Twitter vibes)
 Built-in profanity filter (sorry “kerfuffle” lovers)
 Delete only your own chirps — no drama here
 
-🟥 Chirpy Red
+# 🟥 Chirpy Red
 
 Upgrade to premium via Polka payments
 Webhook integration keeps user status in sync
 Because every bird deserves to shine ✨
 
-🧑‍💻 Admin Zone
+# 🧑‍💻 Admin Zone
 
 App metrics dashboard
 DB reset (for dev mode)
@@ -138,17 +133,17 @@ Request monitoring and hit counts
 🗃️ Database Migrations
 We use Goose to keep DB changes smooth.
 Common commands:
-# Run all migrations
-goose -dir sql/schema postgres $DB_URL up
+```# Run all migrations
+    goose -dir sql/schema postgres $DB_URL up
 
-# Rollback last migration
-goose -dir sql/schema postgres $DB_URL down
+    # Rollback last migration
+    goose -dir sql/schema postgres $DB_URL down
 
-# Check status
-goose -dir sql/schema postgres $DB_URL status
+    # Check status
+    goose -dir sql/schema postgres $DB_URL status
 
-# Create new migration
-goose -dir sql/schema create migration_name sql
+    # Create new migration
+    goose -dir sql/schema create migration_name sql```
 
 🧑‍🔬 Dev Mode
 Set PLATFORM=dev in .env to unlock:
@@ -156,11 +151,9 @@ Set PLATFORM=dev in .env to unlock:
 /admin/reset endpoint
 Extra debug logs
 
-✅ Testing
-go test ./...
+## ✅ Testing
+``` go test ./...
 
-📄 License
-Open source and proud!Licensed under the MIT License — do what you want, just give credit 🫶
 🙏 Thanks & Credits
 Massive shoutout to:
 
