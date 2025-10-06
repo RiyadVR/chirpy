@@ -120,11 +120,11 @@ Log out → revoke refresh tokens
 
 Easy peasy, secure and sleek 🔒
 
-🎯 Cool Stuff Inside
-🐤 Chirps
+## 🎯 Cool Stuff Inside
+# 🐤 Chirps
 
 Max 140 characters (classic Twitter vibes)
-Built-in profanity filter (sorry “kerfuffle” lovers)
+Built-in profanity filter for words like "kerfuffle", "sharbert", and "fornax"
 Delete only your own chirps — no drama here
 
 # 🟥 Chirpy Red
