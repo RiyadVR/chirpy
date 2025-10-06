@@ -133,7 +133,7 @@ Request monitoring and hit counts
 🗃️ Database Migrations
 We use Goose to keep DB changes smooth.
 Common commands:
-```# Run all migrations
+    ```# Run all migrations
     goose -dir sql/schema postgres $DB_URL up
 
     # Rollback last migration
@@ -143,7 +143,7 @@ Common commands:
     goose -dir sql/schema postgres $DB_URL status
 
     # Create new migration
-    goose -dir sql/schema create migration_name sql```
+    goose -dir sql/schema create migration_name sql
 
 🧑‍🔬 Dev Mode
 Set PLATFORM=dev in .env to unlock:
@@ -152,7 +152,7 @@ Set PLATFORM=dev in .env to unlock:
 Extra debug logs
 
 ## ✅ Testing
-``` go test ./...
+    ``` go test ./...
 
 🙏 Thanks & Credits
 Massive shoutout to:
